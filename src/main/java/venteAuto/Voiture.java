@@ -1,12 +1,16 @@
 package venteAuto;
 
+import venteAuto.frein.FreinPerf;
+
 public class Voiture {
   private String nom;
   private int vitesse;
+  private IFrein frein;
 
-  public Voiture(String nom) {
+  public Voiture(String nom, IFrein frein) {
     this.nom = nom;
     this.vitesse = 0;
+    this.frein = frein;
   }
 
 // méthodes finales : non redéfinissables dans les sous-classes
@@ -28,7 +32,7 @@ public class Voiture {
     return nom;
   }
 
-  public  int getVitesseMaximale() {
+  public int getVitesseMaximale() {
     return 240;
   }
 
@@ -38,7 +42,6 @@ public class Voiture {
   }
 
   public void freiner() {
-    int v = getVitesse() - 35;
-    setVitesse(v > 0 ? v : 0);
+    frein.freiner(this);
   }
 }
